@@ -1,22 +1,18 @@
-// Преобразовать функцию sum с помощью каррирования в
-// последовательность функций, вызываемых с одним аргументом
+// Каррирование функции. Функция может принимать несколько аргументов за раз. Всего аргументов 5.
 
-// function sum(a, b, c, d) {
-//     return a + b + c + d;
-// }
-
-function curry() {
-    return (a) => {
-        return (b) => {
-            return (c) => {
-                return (d) => {
-                    return a+b+c+d
-                }
-            };
-        };
-    };
+const curring = () => {
+    return function curringResult (...nums) {
+        if (nums.length >= 5) {
+            const [a,b,c,d,e] = nums
+            return a+b+c+d+e
+        }
+        return function (...nextNums) {
+            const numsArr = [...nums, ...nextNums]
+            return curringResult(...numsArr)
+        }
+    }
 }
 
-const curriedSum = curry();
+const curringSum = curring()
 
-console.log(curriedSum(1)(2)(3)(4)); // 10
+console.log(curringSum(1,1,1)(1,1))
