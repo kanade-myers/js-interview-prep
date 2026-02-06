@@ -21,7 +21,7 @@ function getAnalytics(data) {
                     .filter((item) => item.status === 'completed')
 
     dataLocal.forEach((item) => {
-        if(item.currency === 'EUR') item.amount = item.amount / 1.1
+        if(item.currency === 'EUR') item.amount = item.amount * EXCHANGE_RATE
     })
 
     dataLocal.forEach((item) => {
@@ -44,13 +44,6 @@ function getAnalytics(data) {
 
 console.log(getAnalytics(transactions))
 // {
-//   electronics: {
-//     totalRevenue: 322.72727272727275,
-//     averageCheck: 107.58,
-//     itemsCount: 3
-//   },
-//   books: {
-//      totalRevenue: 50,
-//      averageCheck: 25,
-//      itemsCount: 2 }
+//   electronics: { totalRevenue: 338, averageCheck: 112.67, itemsCount: 3 },
+//   books: { totalRevenue: 50, averageCheck: 25, itemsCount: 2 }
 // }
