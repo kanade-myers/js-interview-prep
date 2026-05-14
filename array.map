@@ -1,0 +1,19 @@
+// Ручная реализация метода массивов Map
+function myMap(callback, thisArg) {
+  const newArr = Array.from(this)
+
+  for(let i=0;i < newArr.length; i++) {
+    newArr[i] = callback.call(thisArg, newArr[i], i, newArr)
+  }
+  
+  
+  return newArr
+}
+
+let arr = [2,3,4,2]
+Array.prototype.myMap = myMap
+
+const arrayLike = {0: 1, 1: 2, length: 2}
+arrayLike.__proto__.myMap = myMap
+
+console.log(arrayLike.myMap((item) => item*2), arrayLike)
